@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a0f1c; /* azul oscuro casi negro */
+  padding: 1rem 2rem;
+  color: white;
+  position: relative;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { color: #1e90ff; }
+  50% { color: #ffffff; }
+  100% { color: #1e90ff; }
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu li {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu li:hover {
+  color: #1e90ff;
+}
+
+.buy-btn {
+  font-weight: bold;
+  border: 1px solid #1e90ff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.center-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
