@@ -1,19 +1,23 @@
-# Etapa 1: Build con Node
-FROM node:18-alpine AS build
+# Etapa de build con Node 20
+FROM node:20-alpine AS build
+
 WORKDIR /app
 
-# Copiar dependencias e instalarlas
+# Copia dependencias e instala
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# Copiar el resto del código y compilar
+# Copia el resto del proyecto y compila
 COPY . .
 RUN npm run build
 
-# Etapa 2: Servir con Nginx
+# -----------------------------
+# Etapa de servidor con Nginx
+# -----------------------------
 FROM nginx:alpine
+
+# Copia la carpeta dist generada por Vite
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exponer puerto 80
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Copia configuración personalizada de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
